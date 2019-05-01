@@ -38,4 +38,4 @@ else
   ganache-cli_pid=$!
 fi
 
-node_modules/.bin/truffle test --network test "$@"
+yarn truffle test --network test "$@"
