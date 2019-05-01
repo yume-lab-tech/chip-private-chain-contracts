@@ -4,5 +4,18 @@
     "openzeppelin-solidity": "^2.2.0",
     "solium": "^1.2.4",
     "truffle": "^5.0.14"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  },
+  "scripts": {
+    "test": "scripts/test.sh",
+    "lint:sol": "yarn solium --dir ./contracts --fix",
+    "lint": "yarn eslint . --fix && yarn lint:sol",
+    "compile": "rm -rf ./build/* && truffle compile",
+    "clean": "rm -rf ./build/* && yarn truffle networks --clean"
   }
 }

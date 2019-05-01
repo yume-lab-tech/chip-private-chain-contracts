@@ -1,9 +1,9 @@
-var Tsuken = artifacts.require("Tsuken");
+const Tsuken = artifacts.require('Tsuken');
 
-contract("Tsuken", function(accounts) {
-  it("should assert true", function(done) {
-    var tsuken_test = Tsuken.deployed();
+contract('Tsuken', () => {
+  it('should assert true', (done) => {
     assert.isTrue(true);
+    Tsuken.new();
     done();
   });
 });
