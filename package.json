@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "openzeppelin-solidity": "^2.2.0",
+    "solium": "^1.2.4",
     "truffle": "^5.0.14"
   }
 }
