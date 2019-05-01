@@ -19,7 +19,4 @@ yarn truffle install
 ```
 
 ## lint
-* soliditynの静的解析:
-`yarn solium -d .`
-* 自動修正:
-`yarn solium -d . --fix`
+`yarn lint`
