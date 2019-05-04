@@ -34,17 +34,37 @@ contract('Tsuken', (accounts) => {
   });
 
   describe('トークン操作の検証', () => {
-    it('発行時は発行したアドレスにトークンが全て付与されること', async () => {
-      // 0番目のアドレスは初回発行しているため1番目のアカウントで検証
-      const account1 = accounts[1];
-      await token.mint(account1, 100);
+    it('初回発行時は発行したアドレスにトークンが全て付与されること', async () => {
+      // 0番目のアドレスは初回発行しているためこのアドレスで検証
+      const account = accounts[0];
 
-      const balance = await token.balanceOf(account1);
-      assert.equal(balance.toNumber(), 100);
+      const balance = await token.balanceOf(account);
+      assert.equal(balance.toNumber(), 10000);
 
-      // initial(10000) + added(100) = 10100
       const totalSupply = await token.totalSupply();
-      assert.equal(totalSupply.toNumber(), 10100);
+      assert.equal(totalSupply.toNumber(), 10000);
+    });
+
+    it('トークン送金が正しく稼働すること', async () => {
+      const account = accounts[0]; // 10000保持
+      const otherAccount = accounts[1];
+
+      const amount = 500;
+
+      const initialBalance = await token.balanceOf(account);
+      assert.equal(initialBalance.toNumber(), 10000);
+
+      const initialOtherBalance = await token.balanceOf(otherAccount);
+      assert.equal(initialOtherBalance.toNumber(), 0);
+
+      // send tokens.
+      await token.transfer(otherAccount, amount);
+
+      const balance = await token.balanceOf(account);
+      assert.equal(balance.toNumber(), 9500);
+
+      const otherBalance = await token.balanceOf(otherAccount);
+      assert.equal(otherBalance.toNumber(), 500);
     });
   });
 });
