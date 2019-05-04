@@ -1,6 +1,6 @@
 const Tsuken = artifacts.require('Tsuken.sol');
 
-contract('Tsuken', () => {
+contract('Tsuken', (accounts) => {
   let token;
 
   beforeEach(async () => {
@@ -30,6 +30,21 @@ contract('Tsuken', () => {
       const expect = 10000;
       const initialBalance = await token.totalSupply();
       assert.equal(expect, initialBalance);
+    });
+  });
+
+  describe('トークン操作の検証', () => {
+    it('発行時は発行したアドレスにトークンが全て付与されること', async () => {
+      // 0番目のアドレスは初回発行しているため1番目のアカウントで検証
+      const account1 = accounts[1];
+      await token.mint(account1, 100);
+
+      const balance = await token.balanceOf(account1);
+      assert.equal(balance.toNumber(), 100);
+
+      // initial(10000) + added(100) = 10100
+      const totalSupply = await token.totalSupply();
+      assert.equal(totalSupply.toNumber(), 10100);
     });
   });
 });
