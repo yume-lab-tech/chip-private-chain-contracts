@@ -24,7 +24,7 @@ contract('Tsuken', () => {
     */
 
     it('トークンの少数桁数が正しいこと', async () => {
-      const expect = 18;
+      const expect = 0;
       const actual = await token.decimals();
       assert.equal(expect, actual);
     });
