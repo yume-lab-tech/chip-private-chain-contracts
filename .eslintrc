@@ -7,7 +7,8 @@
   ],
   "rules": {
     "func-names": 0,
-    "no-undef": 0
+    "no-undef": 0,
+    "no-console": 0
   },
   "parser": "babel-eslint", // for async/await
   "extends": "airbnb-base",
