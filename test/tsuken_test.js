@@ -14,19 +14,22 @@ contract('Tsuken', () => {
       assert.equal(expect, actual);
     });
 
-    /*
     it('トークンのシンボル名が正しいこと', async () => {
-      console.log(token);
       const expect = 'TKN';
       const actual = await token.symbol();
       assert.equal(expect, actual);
     });
-    */
 
     it('トークンの少数桁数が正しいこと', async () => {
       const expect = 0;
       const actual = await token.decimals();
       assert.equal(expect, actual);
+    });
+
+    it('発行トークン量が正しいこと', async () => {
+      const expect = 10000;
+      const initialBalance = await token.totalSupply();
+      assert.equal(expect, initialBalance);
     });
   });
 });
